@@ -116,7 +116,7 @@ module.exports = (robot) ->
 
   robot.respond /what roles? do(es)? @?(.+) have\?*$/i, (msg) ->
     unless robot.auth.isAdmin msg.message.user
-        msg.reply "Sorry, only admins can accees this option."
+        msg.reply "Sorry, only admins can run this command"
     else
         name = msg.match[2].trim()
         if name.toLowerCase() is 'i' then name = msg.message.user.name
@@ -131,7 +131,7 @@ module.exports = (robot) ->
 
   robot.respond /who has (["'\w: -_]+) role\?*$/i, (msg) ->
     unless robot.auth.isAdmin msg.message.user
-        msg.reply "Sorry, only admins can accees this option."
+        msg.reply "Sorry, only admins can run this command"
     else
         role = msg.match[1]
         userNames = robot.auth.usersWithRole(role) if role?
@@ -144,7 +144,7 @@ module.exports = (robot) ->
   robot.respond /list assigned roles/i, (msg) ->
     roles = []
     unless robot.auth.isAdmin msg.message.user
-        msg.reply "Sorry, only admins can list assigned roles."
+        msg.reply "Sorry, only admins can run this command"
     else
         for i, user of robot.brain.data.users when user.roles
             roles.push role for role in user.roles when role not in roles
